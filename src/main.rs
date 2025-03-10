@@ -8,7 +8,6 @@ mod crypto;
 fn main() -> Result<(), Box<dyn Error>> {
     let cli_arg = cli::parse_cli()?;
     let cmac = process::process(&cli_arg)?;
-    println!("CMAC: {:?}", cmac);
     println!("CMAC: {}", process::bytes_to_hex_string(&cmac));
 
     Ok(())

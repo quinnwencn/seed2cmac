@@ -15,7 +15,7 @@ impl CliArg {
 }
 
 pub fn parse_cli() -> Result<CliArg, Box<dyn Error>> {
-    let matches = Command::new("Seed2Key")
+    let matches = Command::new("Seed2CMAC")
         .version("0.1.0")
         .author("Quinn")
         .about("A tool to generate CMAC from seed.")
@@ -38,7 +38,7 @@ pub fn parse_cli() -> Result<CliArg, Box<dyn Error>> {
         .get_matches();
 
     if !matches.args_present() {
-        println!("Usage: seed2key [OPTIONS]");
+        println!("Usage: seed2cmac [OPTIONS]");
         println!("Options:");
         println!("  -s, --seed <SEED>    Set the seed value");
         println!("  -k, --key <KEY>      Set the key value");
