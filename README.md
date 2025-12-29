@@ -1,30 +1,58 @@
-# Introduction
+# Seed2cmac
 
-Seed2CMAC is a command-line tool designed to demonstrate the functionality of the UDS (Unified Diagnostics Service) SecurityAccess service. Specifically, it simulates the process of generating a Cryptographic Message Authentication Code (CMAC) based on a provided seed and key, which is a common step in the SecurityAccess authentication process. This tool is particularly useful for developers, testers, and engineers working on automotive diagnostic systems or embedded software where UDS protocol compliance is required.
+A desktop application for calculating CMAC keys for automotive ECU security access operations. It provides a simple interface to generate security access keys from seed values using CMAC algorithms. The application supports various ECU types and security levels.
 
-# How It Works
+## Features
 
-In the UDS protocol, the SecurityAccess service ensures secure access between an external diagnostic tool and an ECU (Electronic Control Unit). The process typically involves the following steps:
+- User-friendly graphical interface built with Iced
+- Support for multiple ECU types and security levels
+- Hexadecimal input for seed and key values
+- CMAC key calculation
+- One-click copy to clipboard
+- Input validation and error handling
 
-1. The diagnostic tool requests a "seed" from the ECU.
-2. The ECU generates and sends a random seed value to the diagnostic tool.
-3. The diagnostic tool computes a CMAC using the seed and a pre-shared key.
-4. The computed CMAC is sent back to the ECU for verification.
-5. If the CMAC is valid, access is granted.
-`Seed2CMAC` simplifies this process by allowing users to manually input a seed and key to generate the corresponding CMAC, enabling testing and validation of the SecurityAccess service logic.
+## Requirements
 
-# Examples
+- 64-bit operating system (Windows, Linux, or macOS)
+- No additional runtime dependencies required
 
-1. Generate CMAC with a specific seed and key:
-```bash
-seed2cmac -s fbfc3cb800dd58abd5142231a4a0a053 -k f9ddec4c374f98578aa06e78d1ab7a24  
-```
-Output:
-```
-CMAC: 1da90ff600d8fa94111f47f805053b6c
-```
+## Installation
 
-2. Display help info
-```bash
-seed2cmac -h
-```
+### Building from Source
+
+1. Ensure you have Rust and Cargo installed:
+   
+   ```
+   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+   ```
+
+2. Clone the repository:
+   
+   ```
+   git clone [repository-url]
+   cd seed2cmac
+   ```
+
+3. Build the application:
+   
+   ```
+   cargo build --release
+   ```
+
+4. The executable will be available in `target/release/seed2cmac`
+
+## Usage
+
+1. Launch the application
+2. Select the appropriate ECU type from the dropdown menu
+3. Select the required security level
+4. Enter the seed value in hexadecimal format (without 0x prefix)
+5. Enter the key value in hexadecimal format (without 0x prefix)
+6. Click "Calculate" to generate the CMAC key
+7. Use the "Copy" button to copy the result to your clipboard
+8. Click "Clear" to reset all inputs
+
+## Notes
+
+- Seed and key data must be 16 bytes in length, formatted as hexadecimal without "0x" prefix
+- The calculated CMAC key will also be 16 bytes, displayed in hexadecimal format
